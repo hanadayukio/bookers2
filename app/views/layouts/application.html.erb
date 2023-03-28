@@ -9,6 +9,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/2bd6ef42d2.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -22,21 +23,44 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-            <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-            </li>
-            <% else %>
-            <li>
-              <!--"svg-inline--fa fa-home fa-w-18" area-hidden="true" focusable="false"date-prefix="fas" date-icon="home" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg-->
-              <svg class="fa-solid fa-house-chimney">
-              </svg>
-              <%= link_to "新規登録", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_user_session_path %>
-            </li>
-            <% end %>
+              <li>
+                <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fas fa-home"></i>Home
+                <% end %>
+              </li>
+              <% if user_signed_in? %>
+              <li>
+                <%= link_to users_path, class: "nav-link text-light" do %>
+                <i class="fas fa-users"></i>Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to books_path, class: "nav-link text-light" do %>
+                <i class="fas fa-book-open"></i>Books
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                <i class="fas fa-sign-out-alt"></i>Log out
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to about_path, class: "nav-link text-light" do %>
+                <i class="fas fa-link"></i>About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+                <i class="fas fa-user-plus"></i>Sign up
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                <i class="fas fa-sign-in-alt"></i>Log in
+                <% end %>
+              </li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -45,23 +69,11 @@
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p>善良な市民同士で無差別に食欲を煽るSNS</p>
-            <!---->
-          </div>
-          <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
-            <ul class="p-0 list-unstyled">
-              <li>
-                <a href="" title="About" class="text-white-50">会社概要</a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
-              </li>
-            </ul>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
           </div>
         </div>
       </div>
